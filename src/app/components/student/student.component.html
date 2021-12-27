@@ -1,0 +1,45 @@
+<nav class="nav navbar-expand-sm bg-dark navbar-dark navbar-brand">
+  <div class="container">
+    <ul class = "navbar-nav">
+      <li class = "nav-item">
+        <a routerLink="/exercises" routerLinkActive="active" class="nav-link">Exercises</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <h3>Students</h3>
+  <button (click) = "createStudent()" class = "btn btn-success">Add student</button>
+  <br>
+  <br>
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>Patronymic</th>
+      <th>Mark</th>
+      <th>Graph</th>
+      <th>Ready</th>
+      <th>Comment</th>
+      <th>Exercise</th>
+      <th>Delete</th>
+      <th>Update</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of students | async">
+      <td>{{student.lastName}}</td>
+      <td>{{student.firstName}}</td>
+      <td>{{student.patronymic}}</td>
+      <td>{{student.mark}} </td>
+      <td>{{student.graph}}</td>
+      <td>{{student.ready}}</td>
+      <td>{{student.comment}}</td>
+      <td>{{student.exerciseId}}</td>
+      <td><button (click)="deleteStudent(student.id)" class = "btn btn-danger">Delete</button></td>
+      <td><button (click) = "updateStudent(student.id)" class = "btn btn-secondary"> Update</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
