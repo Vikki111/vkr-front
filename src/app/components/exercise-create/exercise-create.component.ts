@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Exercise } from '../../components/exercise/exercise';
+import { ExerciseService } from "../../components/exercise/exercise.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exercise-create',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExerciseCreateComponent implements OnInit {
 
-  constructor() { }
+ exercise: Exercise = new Exercise();
+   constructor(private exerciseService: ExerciseService,
+     private router: Router) { }
 
-  ngOnInit(): void {
-  }
+   ngOnInit(): void {
+   }
 
+   saveExercise(){
+     this.exerciseService.createExercise(this.exercise).subscribe( data =>{
+       console.log(data);
+       this.goToExerciseList();
+     },
+     error => console.log(error));
+   }
+
+   goToExerciseList(){
+     this.router.navigate(['exercises']);
+   }
+
+   onSubmit(){
+     console.log(this.exercise);
+     this.saveExercise();
+   }
 }

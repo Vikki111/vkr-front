@@ -5,12 +5,14 @@ import { ExerciseCreateComponent } from './components/exercise-create/exercise-c
 import { ExerciseUpdateComponent } from './components/exercise-update/exercise-update.component';
 import { StudentComponent } from './components/student/student.component';
 import { StudentCreateComponent } from './components/student-create/student-create.component';
+import { StudentUpdateComponent } from './components/student-update/student-update.component';
 
 const routes: Routes = [
   {path: 'exercises', component: ExerciseComponent },
   {path: 'exercises/:id', component: ExerciseUpdateComponent},
-  {path: 'exercise-create', component: ExerciseUpdateComponent},
+  {path: 'exercise-create', component: ExerciseCreateComponent},
   {path: 'students', component: StudentComponent },
+  {path: 'students/:id', component: StudentUpdateComponent},
   {path: 'student-create', component: StudentCreateComponent},
   {path: "", redirectTo: "login", pathMatch: "full"},
 ];

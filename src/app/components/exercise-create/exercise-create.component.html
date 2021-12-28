@@ -1,1 +1,31 @@
-<p>exercise-create works!</p>
+<div class="container">
+  <h3> Create Exercise </h3>
+  <form (ngSubmit) = "onSubmit()">
+
+    <div class="form-group">
+      <label> Exercise ID</label>
+      <input type="number" class ="form-control" id = "exerciseId"
+             [(ngModel)] = "exercise.id" name = "exerciseId">
+    </div>
+
+    <div class="form-group">
+      <label> Exercise </label>
+      <input type="text" class ="form-control" id = "exercise"
+             [(ngModel)] = "exercise.exercise" name = "exercise">
+    </div>
+
+    <div class="form-group">
+      <label> Exercise Description</label>
+      <input type="text" class ="form-control" id = "exerciseDescription"
+             [(ngModel)] = "exercise.description" name = "exerciseDescription">
+    </div>
+
+    <div class="form-group">
+      <label> Graph </label>
+      <input type="text" class ="form-control" id = "graph"
+             [(ngModel)] = "exercise.graph" name = "graph">
+    </div>
+    <br>
+    <button class = "btn btn-success" type ="submit">Submit</button>
+  </form>
+</div>
