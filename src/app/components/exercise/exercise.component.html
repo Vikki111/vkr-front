@@ -4,6 +4,9 @@
       <li class = "nav-item">
         <a routerLink="/students" routerLinkActive="active" class="nav-link">Students</a>
       </li>
+      <li class = "nav-item">
+        <a routerLink="/exercises" routerLinkActive="active" class="nav-link">Exercises</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -18,7 +21,6 @@
       <th>ID</th>
       <th>Exercise</th>
       <th>Description</th>
-      <th>Graph</th>
       <th>Delete</th>
       <th>Update</th>
     </tr>
@@ -28,7 +30,6 @@
       <td>{{exercise.id}}</td>
       <td>{{exercise.exercise}}</td>
       <td>{{exercise.description}}</td>
-      <td>{{exercise.graph}}</td>
       <td><button (click)="deleteExercise(exercise.id)" class = "btn btn-danger">Delete</button></td>
       <td><button (click) = "updateExercise(exercise.id)" class = "btn btn-secondary"> Update</button></td>
     </tr>

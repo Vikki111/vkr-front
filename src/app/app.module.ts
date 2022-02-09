@@ -13,6 +13,8 @@ import { StudentUpdateComponent } from './components/student-update/student-upda
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { ExerciseCreateComponent } from './components/exercise-create/exercise-create.component';
 import { ExerciseUpdateComponent } from './components/exercise-update/exercise-update.component';
+import { GraphEditorComponent } from './components/graph-editor/graph-editor.component';
+import { GraphViewerComponent } from './components/graph-viewer/graph-viewer.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ExerciseUpdateComponent } from './components/exercise-update/exercise-u
     StudentUpdateComponent,
     ExerciseComponent,
     ExerciseCreateComponent,
-    ExerciseUpdateComponent
+    ExerciseUpdateComponent,
+    GraphEditorComponent,
+    GraphViewerComponent
   ],
   imports: [
       BrowserModule,

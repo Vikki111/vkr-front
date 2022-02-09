@@ -2,6 +2,9 @@
   <div class="container">
     <ul class = "navbar-nav">
       <li class = "nav-item">
+        <a routerLink="/students" routerLinkActive="active" class="nav-link">Students</a>
+      </li>
+      <li class = "nav-item">
         <a routerLink="/exercises" routerLinkActive="active" class="nav-link">Exercises</a>
       </li>
     </ul>
@@ -18,13 +21,15 @@
       <th>Last Name</th>
       <th>First Name</th>
       <th>Patronymic</th>
+      <th>Department</th>
       <th>Mark</th>
-      <th>Graph</th>
+<!--      <th>Graph</th>-->
       <th>Ready</th>
       <th>Comment</th>
       <th>Exercise</th>
-      <th>Delete</th>
+      <th>View</th>
       <th>Update</th>
+      <th>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -32,13 +37,15 @@
       <td>{{student.lastName}}</td>
       <td>{{student.firstName}}</td>
       <td>{{student.patronymic}}</td>
+      <td>{{student.department}}</td>
       <td>{{student.mark}} </td>
-      <td>{{student.graph}}</td>
+<!--      <td>{{student.graph}}</td>-->
       <td>{{student.ready}}</td>
       <td>{{student.comment}}</td>
       <td>{{student.exerciseId}}</td>
-      <td><button (click)="deleteStudent(student.id)" class = "btn btn-danger">Delete</button></td>
+      <td><button (click)="viewGraph(student.id)" class = "btn btn-secondary">View</button></td>
       <td><button (click) = "updateStudent(student.id)" class = "btn btn-secondary"> Update</button></td>
+      <td><button (click)="deleteStudent(student.id)" class = "btn btn-danger">Delete</button></td>
     </tr>
     </tbody>
   </table>

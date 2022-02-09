@@ -3,6 +3,7 @@ export class Student {
   lastName: string;
   firstName: string;
   patronymic: string;
+  department: string;
   mark: string;
   graph: string;
   ready: boolean;

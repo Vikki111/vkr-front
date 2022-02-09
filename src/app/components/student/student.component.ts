@@ -34,6 +34,10 @@ export class StudentComponent implements OnInit {
     this.students = this.studentService.getStudentsList();
   }
 
+  viewGraph(id: number){
+        this.router.navigate(['graph-viewer', id]);
+    }
+
   updateStudent(id: number){
       this.router.navigate(['students', id]);
   }

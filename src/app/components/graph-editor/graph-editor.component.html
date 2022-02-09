@@ -1,0 +1,103 @@
+<nav class="nav navbar-expand-sm bg-dark navbar-dark navbar-brand">
+  <div class="container">
+    <ul class = "navbar-nav">
+      <li class = "nav-item">
+        <a routerLink="/students" routerLinkActive="active" class="nav-link">Students</a>
+      </li>
+      <li class = "nav-item">
+        <a routerLink="/exercises" routerLinkActive="active" class="nav-link">Exercises</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            flex-direction: row;
+            padding:5px;
+            height:100vh;
+            width:100%;
+        }
+
+        #input {
+            display: flex;
+            display: block;
+            width: 100%;
+            height: 60%;
+            font-size: 16px;
+            font-Family: Arial;
+            padding:5px;
+        }
+
+        #text-container {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            height: 100%;
+            border:solid 1px #BDBDBD;
+            padding:5px;
+        }
+
+        #inputComment {
+            display: flex;
+            display: block;
+            width: 100%;
+            height: 15%;
+        }
+        #graph-container {
+            display: flex;
+            width: 70%;
+            height: 100%;
+            border:solid 2px #BDBDBD;
+        }
+    </style>
+<div id="text-container">
+  <label>Exercise Id</label>
+  <input type="text" class ="form-control" id = "exercise"
+         [(ngModel)] = "student.exerciseId" name = "exercise" readonly>
+  <label>Exercise</label>
+<!--  <textarea class="form-control" id="input" spellcheck="false"-->
+<!--            readonly>-->
+<!--  (1) start = ([ FROM id ] IMPORT| EXPORT)id-list ;-->
+<!--  (2) id-list = id { , id }-->
+<!--  </textarea>-->
+  <input class="form-control" id="input" spellcheck="false"
+         [(ngModel)] = "exercise.exercise" readonly>
+  <label> Last Name</label>
+  <input type="text" class ="form-control" id = "lastName"
+         [(ngModel)] = "student.lastName" name = "lastName" readonly>
+  <label> Fist Name </label>
+  <input type="text" class ="form-control" id = "firstName"
+         [(ngModel)] = "student.firstName" name = "firstName" readonly>
+  <label> Patronymic </label>
+  <input type="text" class ="form-control" id = "patronymic"
+         [(ngModel)] = "student.patronymic" name = "patronymic" readonly>
+  <label> Mark </label>
+  <input type="number" class ="form-control" id = "mark"
+         [(ngModel)] = "student.mark" name = "mark" readonly>
+  <label> Comment </label>
+  <input class="form-control" [(ngModel)] = "student.comment" id="inputComment" readonly>
+  <label> Название ребра </label>
+  <textarea class ="form-control" placeholder="Название выбранного ребра" id="inputEdge"></textarea>
+  <input type="button" class = "btn btn-secondary btn-outline-light" id="changeEdgeNameButton" value="Изменить название ребра">
+  <input type="button" class = "btn btn-secondary btn-outline-light" id="validate" value="Проверить граф">
+  <input (click) = "save()" type="button"
+         class = "btn btn-secondary btn-outline-light" id="save" value="Сохранить изменения">
+</div>
+<div id="graph-container">
+
+</div>
+</body>
+</html>

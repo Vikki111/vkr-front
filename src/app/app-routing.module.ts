@@ -6,6 +6,8 @@ import { ExerciseUpdateComponent } from './components/exercise-update/exercise-u
 import { StudentComponent } from './components/student/student.component';
 import { StudentCreateComponent } from './components/student-create/student-create.component';
 import { StudentUpdateComponent } from './components/student-update/student-update.component';
+import { GraphEditorComponent } from './components/graph-editor/graph-editor.component';
+import { GraphViewerComponent } from './components/graph-viewer/graph-viewer.component';
 
 const routes: Routes = [
   {path: 'exercises', component: ExerciseComponent },
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path: 'students', component: StudentComponent },
   {path: 'students/:id', component: StudentUpdateComponent},
   {path: 'student-create', component: StudentCreateComponent},
+  {path: 'graph-viewer/:id', component: GraphViewerComponent},
+  {path: 'graph-editor/:id', component: GraphEditorComponent},
   {path: "", redirectTo: "login", pathMatch: "full"},
 ];
 
