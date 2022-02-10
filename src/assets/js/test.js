@@ -359,10 +359,12 @@ $(document).ready(function() {
 
         //POST запрос на бэк, чтобы сохранить json с графом
         async function savejson() {
-            let response = await fetch('/savejson', {
+        var studentId = window.location.href.split('graph-editor/')[1];
+            let response = await fetch('http://localhost:8080/savejson', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
+                    'Content-Type': 'application/json;charset=utf-8',
+                    'student-id':studentId
                 },
                 body: JSON.stringify({
                     nodes: graph.graph.nodes(),
@@ -371,7 +373,6 @@ $(document).ready(function() {
             });
 
             let result = await response.json();
-            //         alert(result.toString());
             console.log(result);
         }
 

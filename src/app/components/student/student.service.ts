@@ -20,6 +20,10 @@ export class StudentService {
     return this.http.post<Student>(`${this.baseUrl}`, student);
   }
 
+  validateGraph(student: Student): Observable<string> {
+    return this.http.post<string>(`${this.baseUrl}/validate`, student);
+  }
+
   updateStudent(id: number, student: Student): Observable<Student> {
     return this.http.put<Student>(`${this.baseUrl}/${id}`, student, {});
   }

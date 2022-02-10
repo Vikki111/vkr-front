@@ -92,9 +92,10 @@
   <label> Название ребра </label>
   <textarea class ="form-control" placeholder="Название выбранного ребра" id="inputEdge"></textarea>
   <input type="button" class = "btn btn-secondary btn-outline-light" id="changeEdgeNameButton" value="Изменить название ребра">
-  <input type="button" class = "btn btn-secondary btn-outline-light" id="validate" value="Проверить граф">
-  <input (click) = "save()" type="button"
-         class = "btn btn-secondary btn-outline-light" id="save" value="Сохранить изменения">
+  <label> Валидность графа </label>
+  <input class="form-control" [(ngModel)] = "validateResponce" id="validateResponce" readonly>
+  <input (click) = "validate()" type="button" class = "btn btn-secondary btn-outline-light" id="validate" value="Проверить граф">
+  <input (click) = "save()" type="button" class = "btn btn-secondary btn-outline-light" id="save" value="Сохранить изменения">
 </div>
 <div id="graph-container">
 
