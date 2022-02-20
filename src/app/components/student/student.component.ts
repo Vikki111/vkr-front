@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { StudentService } from "../../components/student/student.service";
 import { Student } from '../../components/student/student';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { TokenStorageService } from '../../token-storage.service';
+import { TokenStorageService } from '../../token-storage.service';
 
 @Component({
   selector: 'app-student',
@@ -12,11 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class StudentComponent implements OnInit {
    students: Observable<Student[]>;
-//    roles: string[] = [];
-//    isAdmin = false;
+   roles: string[] = [];
+   isAdmin = false;
 
   constructor(
-//   private tokenStorageService: TokenStorageService,
+  private tokenStorageService: TokenStorageService,
   private studentService: StudentService, private route: ActivatedRoute,
                                                             private router: Router) {
       this.students = this.studentService.getStudentsList() //?
@@ -24,10 +24,10 @@ export class StudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.students = this.studentService.getStudentsList();
-//     this.roles = this.tokenStorageService.getUser().roles;
-//         if(this.roles[0] == "ROLE_ADMIN") {
-//             this.isAdmin = true;
-//           }
+    this.roles = this.tokenStorageService.getUser().roles;
+        if(this.roles[0] == "ROLE_ADMIN") {
+            this.isAdmin = true;
+          }
   }
 
   reloadData() {
@@ -36,7 +36,7 @@ export class StudentComponent implements OnInit {
 
   viewGraph(id: number){
         this.router.navigate(['graph-viewer', id]);
-    }
+  }
 
   updateStudent(id: number){
       this.router.navigate(['students', id]);
@@ -57,7 +57,7 @@ export class StudentComponent implements OnInit {
   }
 
   logout(): void {
-//        this.tokenStorageService.signOut();
+       this.tokenStorageService.signOut();
        window.location.reload();
      }
 }

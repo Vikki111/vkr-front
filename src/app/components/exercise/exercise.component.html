@@ -7,12 +7,15 @@
       <li class = "nav-item">
         <a routerLink="/exercises" routerLinkActive="active" class="nav-link">Exercises</a>
       </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">LogOut</a>
+      </li>
     </ul>
   </div>
 </nav>
 <div class="container">
   <h3>Exercises</h3>
-  <button (click) = "createExercise()" class = "btn btn-success">Add exercise</button>
+  <button *ngIf="this.isAdmin" (click) = "createExercise()" class = "btn btn-success">Add exercise</button>
   <br>
   <br>
   <table class="table table-striped table-bordered">

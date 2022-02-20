@@ -15,6 +15,10 @@ import { ExerciseCreateComponent } from './components/exercise-create/exercise-c
 import { ExerciseUpdateComponent } from './components/exercise-update/exercise-update.component';
 import { GraphEditorComponent } from './components/graph-editor/graph-editor.component';
 import { GraphViewerComponent } from './components/graph-viewer/graph-viewer.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+
+import { authInterceptorProviders } from './hlp/auth.interceptor';
 
 
 @NgModule({
@@ -27,7 +31,9 @@ import { GraphViewerComponent } from './components/graph-viewer/graph-viewer.com
     ExerciseCreateComponent,
     ExerciseUpdateComponent,
     GraphEditorComponent,
-    GraphViewerComponent
+    GraphViewerComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
       BrowserModule,
@@ -38,7 +44,7 @@ import { GraphViewerComponent } from './components/graph-viewer/graph-viewer.com
       RouterModule,
       FormsModule
     ],
-    providers: [],
+    providers: [authInterceptorProviders],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

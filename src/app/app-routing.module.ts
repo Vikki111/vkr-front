@@ -8,6 +8,8 @@ import { StudentCreateComponent } from './components/student-create/student-crea
 import { StudentUpdateComponent } from './components/student-update/student-update.component';
 import { GraphEditorComponent } from './components/graph-editor/graph-editor.component';
 import { GraphViewerComponent } from './components/graph-viewer/graph-viewer.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {path: 'exercises', component: ExerciseComponent },
@@ -18,7 +20,9 @@ const routes: Routes = [
   {path: 'student-create', component: StudentCreateComponent},
   {path: 'graph-viewer/:id', component: GraphViewerComponent},
   {path: 'graph-editor/:id', component: GraphEditorComponent},
-  {path: "", redirectTo: "login", pathMatch: "full"},
+  {path: "login",component: LoginComponent},
+  {path: "register",component: RegisterComponent},
+  {path: "",redirectTo:"login",pathMatch:"full"},
 ];
 
 @NgModule({

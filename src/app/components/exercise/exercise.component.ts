@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { ExerciseService } from "../../components/exercise/exercise.service";
 import { Exercise } from '../../components/exercise/exercise';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { TokenStorageService } from '../../token-storage.service';
+import { TokenStorageService } from '../../token-storage.service';
 
 @Component({
   selector: 'app-exercise',
@@ -12,11 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ExerciseComponent implements OnInit {
    exercises: Observable<Exercise[]>;
-//    roles: string[] = [];
-//    isAdmin = false;
+   roles: string[] = [];
+   isAdmin = false;
 
   constructor(
-//   private tokenStorageService: TokenStorageService,
+  private tokenStorageService: TokenStorageService,
   private exerciseService: ExerciseService, private route: ActivatedRoute,
                                                             private router: Router) {
       this.exercises = this.exerciseService.getExercisesList() //?
@@ -24,10 +24,10 @@ export class ExerciseComponent implements OnInit {
 
   ngOnInit(): void {
     this.exercises = this.exerciseService.getExercisesList();
-//     this.roles = this.tokenStorageService.getUser().roles;
-//         if(this.roles[0] == "ROLE_ADMIN") {
-//             this.isAdmin = true;
-//           }
+    this.roles = this.tokenStorageService.getUser().roles;
+        if(this.roles[0] == "ROLE_ADMIN") {
+            this.isAdmin = true;
+          }
   }
 
   reloadData() {
@@ -53,7 +53,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   logout(): void {
-//        this.tokenStorageService.signOut();
+       this.tokenStorageService.signOut();
        window.location.reload();
      }
 }
