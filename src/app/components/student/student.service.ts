@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Student } from '../../components/student/student';
+import { StudentFilter } from '../../components/student/studentFilter';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class StudentService {
   createStudent(student: Student): Observable<Student> {
     return this.http.post<Student>(`${this.baseUrl}`, student);
   }
+
+  findStudents(studentFilter: StudentFilter): Observable<Student[]> {
+      return this.http.post<Student[]>(`${this.baseUrl}/find`, studentFilter);
+    }
 
   validateGraph(student: Student): Observable<string> {
     return this.http.post<string>(`${this.baseUrl}/validate`, student);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { StudentService } from "../../components/student/student.service";
 import { Student } from '../../components/student/student';
+import { StudentFilter } from '../../components/student/studentFilter';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from '../../token-storage.service';
 
@@ -12,6 +13,7 @@ import { TokenStorageService } from '../../token-storage.service';
 })
 export class StudentComponent implements OnInit {
    students: Observable<Student[]>;
+   studentFilter: StudentFilter = new StudentFilter();
    roles: string[] = [];
    isAdmin = false;
 
@@ -54,6 +56,14 @@ export class StudentComponent implements OnInit {
           this.reloadData();
         },
         error => console.log(error));
+  }
+
+  search() {
+    console.log(this.students);
+    this.students = new Observable<Student[]>();
+    console.log(this.studentFilter);
+    console.log(this.students);
+    this.students = this.studentService.findStudents(this.studentFilter);
   }
 
   logout(): void {
