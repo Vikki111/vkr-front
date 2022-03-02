@@ -153,7 +153,9 @@ $(document).ready(function() {
             labelThreshold: 0,
             edgeLabelSize: 'fixed',
             defaultEdgeLabelSize: 18,
-            defaultLabelSize: 20
+            defaultLabelSize: 20,
+            autoRescale: ['nodeSize', 'edgeSize'],
+            zoomingRatio: 5
         }
     });
     var dragListener = sigma.plugins.dragNodes(graph, graph.renderers[0]);
