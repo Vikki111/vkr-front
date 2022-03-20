@@ -5,6 +5,7 @@ import { Exercise } from '../../components/exercise/exercise';
 import { ExerciseService } from "../../components/exercise/exercise.service";
 import { Observable } from "rxjs";
 import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from '../../token-storage.service';
 
 @Component({
   selector: 'app-graph-editor',
@@ -19,7 +20,8 @@ export class GraphEditorComponent implements OnInit {
     student: Student = new Student();
     exercise: Exercise = new Exercise();
 
-  constructor(private studentService: StudentService,
+  constructor(private tokenStorageService: TokenStorageService,
+      private studentService: StudentService,
       private exerciseService: ExerciseService,
       private route: ActivatedRoute,
       private router: Router) {
@@ -61,4 +63,9 @@ export class GraphEditorComponent implements OnInit {
       gotoList() {
         this.router.navigate(['students']);
       }
+
+      logout(): void {
+           this.tokenStorageService.signOut();
+           window.location.reload();
+         }
 }
