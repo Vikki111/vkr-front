@@ -12,9 +12,11 @@ let redNodeIds = {};
 
 let selectedEdgeId;
 
+var commonNodeId = 0;
+
 var nId = 0;
 
-function processData(test) {
+function processData() {
 
     if (graph.isForceAtlas2Running())
         graph.killForceAtlas2();
@@ -306,7 +308,8 @@ function mainFunc() {
                     y,
                     p,
                     id,
-                    neighbors;
+                    neighbors,
+                    commonNodeId;
 
                 x = sigma.utils.getX(e) - dom.offsetWidth / 2;
                 y = sigma.utils.getY(e) - dom.offsetHeight / 2;
@@ -314,12 +317,12 @@ function mainFunc() {
                 p = graph.camera.cameraPosition(x, y);
                 x = p.x;
                 y = p.y;
-                var test = ++nId;
 
-                graph.graph.addNode({
-                    id: test,
-                    size: 50,
-                    label: test + "",
+            commonNodeId = fillCommonNodeId() + 1;
+            graph.graph.addNode({
+                id: commonNodeId,
+                size: 50,
+                label: commonNodeId + "",
                     x: x + Math.random() / 10,
                     y: y + Math.random() / 10,
                     dX: 0,
@@ -578,7 +581,8 @@ function recover(data) {
                 y,
                 p,
                 id,
-                neighbors;
+                neighbors,
+                commonNodeId;
 
             x = sigma.utils.getX(e) - dom.offsetWidth / 2;
             y = sigma.utils.getY(e) - dom.offsetHeight / 2;
@@ -586,12 +590,12 @@ function recover(data) {
             p = graph.camera.cameraPosition(x, y);
             x = p.x;
             y = p.y;
-            var test = ++nId;
 
+            commonNodeId = fillCommonNodeId() + 1;
             graph.graph.addNode({
-                id: test,
+                id: commonNodeId,
                 size: 50,
-                label: test + "",
+                label: commonNodeId + "",
                 x: x + Math.random() / 10,
                 y: y + Math.random() / 10,
                 dX: 0,
@@ -644,7 +648,7 @@ function recover(data) {
     var dragListener = sigma.plugins.dragNodes(graph, graph.renderers[0]);
 
     //  graph = new sigma('container');
-    processData();
+//    processData();
 
     //TODO непонятно
     //постоянное чтение из тэга input и выполнение processData
@@ -663,7 +667,23 @@ function recover(data) {
         selectedEdgeId = e.data.edge.id;
     });
 
-
+    //функция заполнения сквозного id для нод
+    function fillCommonNodeId() {
+        console.log("зашли в метод");
+        if (graph.graph.nodes() != null) {
+            var maxValue = 0;
+            graph.graph.nodes().forEach(function(node) {
+                if (node.id >= maxValue) {
+                    console.log("node.id: "+ node.id);
+                    console.log("maxValue: "+ maxValue);
+                    maxValue = node.id;
+                }
+            });
+        }
+        return maxValue;
+//        this.commonNodeId = maxValue;
+//        console.log("this.commonNodeId: "+this.commonNodeId);
+    }
 
     //функция проверки наличия вершины по id
     function existsNode(id) {
