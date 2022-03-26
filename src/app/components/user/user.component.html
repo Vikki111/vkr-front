@@ -17,27 +17,26 @@
   </div>
 </nav>
 <div class="container">
-  <h3>Exercises</h3>
-  <button *ngIf="this.isAdmin" (click) = "createExercise()" class = "btn btn-success">Добавить задание</button>
+  <h3>Пользователи</h3>
   <br>
   <br>
   <table class="table table-striped table-bordered">
     <thead>
     <tr>
       <th>ID</th>
-      <th>Задание</th>
-      <th>Описание</th>
+      <th>Логин</th>
+      <th>Пароль</th>
+      <th>Студент</th>
       <th>Удалить</th>
-      <th>Обновить</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let exercise of exercises | async">
-      <td>{{exercise.id}}</td>
-      <td>{{exercise.exercise}}</td>
-      <td>{{exercise.description}}</td>
-      <td><button (click)="deleteExercise(exercise.id)" class = "btn btn-danger">Удалить</button></td>
-      <td><button (click) = "updateExercise(exercise.id)" class = "btn btn-secondary">Обновить</button></td>
+    <tr *ngFor="let user of users | async">
+      <td>{{user.id}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.password}}</td>
+      <td>{{user.student}}</td>
+      <td><button (click)="deleteUser(user.id)" class = "btn btn-danger">Удалить</button></td>
     </tr>
     </tbody>
   </table>

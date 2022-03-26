@@ -2,7 +2,7 @@
   <div class="container">
     <ul class = "navbar-nav">
       <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <a href class="nav-link" (click)="logout()">Выход</a>
       </li>
     </ul>
   </div>
@@ -64,10 +64,10 @@
         }
     </style>
 <div id="text-container">
-  <label>Exercise Id</label>
+  <label>Номер задания</label>
   <input type="text" class ="form-control" id = "exercise"
          [(ngModel)] = "student.exerciseId" name = "exercise" readonly>
-  <label>Exercise</label>
+  <label>Задание</label>
 <!--  <textarea class="form-control" id="input" spellcheck="false"-->
 <!--            readonly>-->
 <!--  (1) start = ([ FROM id ] IMPORT| EXPORT)id-list ;-->
@@ -77,19 +77,19 @@
   </textarea>
 <!--  <input class="form-control" id="input" spellcheck="false"-->
 <!--         [(ngModel)] = "exercise.exercise" readonly>-->
-<!--  <label> Last Name</label>-->
+  <label>Фамилия</label>
   <input type="text" class ="form-control" id = "lastName"
          [(ngModel)] = "student.lastName" name = "lastName" readonly>
-  <label> Fist Name </label>
+  <label>Имя</label>
   <input type="text" class ="form-control" id = "firstName"
          [(ngModel)] = "student.firstName" name = "firstName" readonly>
-  <label> Patronymic </label>
+  <label>Отчество</label>
   <input type="text" class ="form-control" id = "patronymic"
          [(ngModel)] = "student.patronymic" name = "patronymic" readonly>
-  <label> Mark </label>
+  <label>Оценка</label>
   <input type="number" class ="form-control" id = "mark"
          [(ngModel)] = "student.mark" name = "mark" readonly>
-  <label> Comment </label>
+  <label>Комментарий</label>
   <input class="form-control" [(ngModel)] = "student.comment" id="inputComment" readonly>
   <label> Название ребра </label>
   <textarea class ="form-control" placeholder="Название выбранного ребра" id="inputEdge"></textarea>

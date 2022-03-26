@@ -19,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
 import { authInterceptorProviders } from './hlp/auth.interceptor';
+import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { authInterceptorProviders } from './hlp/auth.interceptor';
     GraphEditorComponent,
     GraphViewerComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserComponent
   ],
   imports: [
       BrowserModule,

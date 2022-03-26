@@ -3,23 +3,23 @@
   <form (ngSubmit) = "onSubmit()">
 
     <div class="form-group">
-      <label> Exercise ID</label>
+      <label>ID задания</label>
       <input type="text" class ="form-control" id = "exerciseId"
              [(ngModel)] = "exercise.id" name = "exerciseId">
     </div>
 
     <div class="form-group">
-      <label> Exercise </label>
+      <label>Задание</label>
       <input type="text" class ="form-control" id = "exercise"
              [(ngModel)] = "exercise.exercise" name = "exercise">
     </div>
 
     <div class="form-group">
-      <label> Exercise Description</label>
+      <label>Описание задания</label>
       <input type="text" class ="form-control" id = "exerciseDescription"
              [(ngModel)] = "exercise.description" name = "exerciseDescription">
     </div>
     <br>
-    <button class = "btn btn-success" type ="submit">Submit</button>
+    <button class = "btn btn-success" type ="submit">Сохранить</button>
   </form>
 </div>

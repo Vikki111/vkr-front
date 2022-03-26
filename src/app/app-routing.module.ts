@@ -10,6 +10,7 @@ import { GraphEditorComponent } from './components/graph-editor/graph-editor.com
 import { GraphViewerComponent } from './components/graph-viewer/graph-viewer.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   {path: 'exercises', component: ExerciseComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'student-create', component: StudentCreateComponent},
   {path: 'graph-viewer/:id', component: GraphViewerComponent},
   {path: 'graph-editor/:id', component: GraphEditorComponent},
+  {path: 'users', component: UserComponent },
   {path: "login",component: LoginComponent},
   {path: "register",component: RegisterComponent},
   {path: "",redirectTo:"login",pathMatch:"full"},
