@@ -326,19 +326,31 @@ function recover(data) {
                     redNodeIds[0] = e.data.node.id;
                 } else {
                     if(existsEdge(redNodeIds[0] + "-" + e.data.node.id) == false) { //если не было такого ребра, то добавляем
-                        graph.graph.addEdge({ //добавление связей
-                            id: redNodeIds[0] + "-" + e.data.node.id,
-                            source: redNodeIds[0],
-                            size: 12,
-                            target: e.data.node.id,
-                            color: '#ccc',
-                            hover_color: '#000',
-                            type: "arrow"
-                        });
+                        if(existsEdge(e.data.node.id + "-" + redNodeIds[0])) {
+                            graph.graph.addEdge({ //добавление связей
+                                id: redNodeIds[0] + "-" + e.data.node.id,
+                                source: redNodeIds[0],
+                                size: 12,
+                                target: e.data.node.id,
+                                color: '#ccc',
+                                hover_color: '#000',
+                                type: "curvedArrow"
+                            });
+                        } else {
+                            graph.graph.addEdge({ //добавление связей
+                                id: redNodeIds[0] + "-" + e.data.node.id,
+                                source: redNodeIds[0],
+                                size: 12,
+                                target: e.data.node.id,
+                                color: '#ccc',
+                                hover_color: '#000',
+                                type: "arrow"
+                            });
+                        }
                     }
-                    if(existsEdge(e.data.node.id + "-" + redNodeIds[0])) { //если было обратное ребро, то удаляем его
-                        graph.graph.dropEdge(e.data.node.id + "-" + redNodeIds[0]);
-                    }
+//                    if(existsEdge(e.data.node.id + "-" + redNodeIds[0])) { //если было обратное ребро, то удаляем его
+//                        graph.graph.dropEdge(e.data.node.id + "-" + redNodeIds[0]);
+//                    }
                     graph.graph.nodes().forEach(function(node) {
                         if (node.id == e.data.node.id || node.id == redNodeIds[0]) { //убираем выделение вершины
                             node.color = '#000';
@@ -366,7 +378,7 @@ function recover(data) {
                            target: e.data.node.id,
                            color: '#ccc',
                            hover_color: '#000',
-                           type: 'curve'
+                           type: 'curvedArrow'
                        });
                      }
                      redNodeIds[0] = null;

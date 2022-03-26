@@ -59,6 +59,9 @@
             height: 100%;
             border:solid 2px #BDBDBD;
         }
+        textarea {
+          white-space: pre-wrap;
+        }
     </style>
 <div id="text-container">
   <label>Exercise Id</label>
@@ -70,9 +73,11 @@
 <!--  (1) start = ([ FROM id ] IMPORT| EXPORT)id-list ;-->
 <!--  (2) id-list = id { , id }-->
 <!--  </textarea>-->
-  <input class="form-control" id="input" spellcheck="false"
-         [(ngModel)] = "exercise.exercise" readonly>
-  <label> Last Name</label>
+  <textarea class="form-control" id="input" [(ngModel)] = "exercise.exercise"  spellcheck="false" readonly>
+  </textarea>
+<!--  <input class="form-control" id="input" spellcheck="false"-->
+<!--         [(ngModel)] = "exercise.exercise" readonly>-->
+<!--  <label> Last Name</label>-->
   <input type="text" class ="form-control" id = "lastName"
          [(ngModel)] = "student.lastName" name = "lastName" readonly>
   <label> Fist Name </label>
