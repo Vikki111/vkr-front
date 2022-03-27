@@ -1,26 +1,30 @@
-<nav class="nav navbar-expand-sm bg-dark navbar-dark navbar-brand">
-  <div class="container">
-    <ul class = "navbar-nav">
-      <li class = "nav-item">
-        <a routerLink="/students" routerLinkActive="active" class="nav-link">Студенты</a>
-      </li>
-      <li class = "nav-item">
-        <a routerLink="/exercises" routerLinkActive="active" class="nav-link">Задания</a>
-      </li>
-      <li class = "nav-item">
-        <a routerLink="/users" routerLinkActive="active" class="nav-link">Пользователи</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">Выход</a>
-      </li>
-    </ul>
-  </div>
-</nav>
 <div class="container">
-  <h3>Exercises</h3>
+  <nav class="nav navbar-expand-sm bg-dark navbar-dark navbar-brand">
+    <div class="container">
+      <ul class = "navbar-nav">
+        <li class = "nav-item">
+          <a routerLink="/students" routerLinkActive="active" class="nav-link">Студенты</a>
+        </li>
+        <li class = "nav-item">
+          <a routerLink="/exercises" routerLinkActive="active" class="nav-link">Задания</a>
+        </li>
+        <li class = "nav-item">
+          <a routerLink="/users" routerLinkActive="active" class="nav-link">Пользователи</a>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">Выход</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<div class="container">
+  <br>
+  <br>
   <button *ngIf="this.isAdmin" (click) = "createExercise()" class = "btn btn-success">Добавить задание</button>
   <br>
   <br>
+  <h3>Exercises</h3>
   <table class="table table-striped table-bordered">
     <thead>
     <tr>
