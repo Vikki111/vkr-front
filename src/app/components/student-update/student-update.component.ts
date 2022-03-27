@@ -31,7 +31,6 @@ export class StudentUpdateComponent implements OnInit {
 
       this.studentService.getStudent(this.id)
         .subscribe(data => {
-          console.log(data);
           this.student = data;
         }, error => console.log(error));
     }
@@ -39,7 +38,6 @@ export class StudentUpdateComponent implements OnInit {
     updateStudent() {
       this.studentService.updateStudent(this.id, this.student)
         .subscribe(data => {
-          console.log(data);
           this.student = new Student();
           this.gotoList();
         }, error => console.log(error));

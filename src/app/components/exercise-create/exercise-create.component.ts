@@ -19,7 +19,6 @@ export class ExerciseCreateComponent implements OnInit {
 
    saveExercise(){
      this.exerciseService.createExercise(this.exercise).subscribe( data =>{
-       console.log(data);
        this.goToExerciseList();
      },
      error => console.log(error));
@@ -30,7 +29,6 @@ export class ExerciseCreateComponent implements OnInit {
    }
 
    onSubmit(){
-     console.log(this.exercise);
      this.saveExercise();
    }
 }

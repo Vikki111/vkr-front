@@ -52,17 +52,13 @@ export class StudentComponent implements OnInit {
     this.studentService.deleteStudent(id)
     .subscribe(
         data => {
-          console.log(data);
           this.reloadData();
         },
         error => console.log(error));
   }
 
   search() {
-    console.log(this.students);
     this.students = new Observable<Student[]>();
-    console.log(this.studentFilter);
-    console.log(this.students);
     this.students = this.studentService.findStudents(this.studentFilter);
   }
 

@@ -24,7 +24,6 @@ id: number;
 
      this.exerciseService.getExercise(this.id)
        .subscribe(data => {
-         console.log(data)
          this.exercise = data;
        }, error => console.log(error));
    }
@@ -32,7 +31,6 @@ id: number;
    updateExercise() {
      this.exerciseService.updateExercise(this.id, this.exercise)
        .subscribe(data => {
-         console.log(data);
          this.exercise = new Exercise();
          this.gotoList();
        }, error => console.log(error));

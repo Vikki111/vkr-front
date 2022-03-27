@@ -28,6 +28,9 @@ $(document).ready(function() {
     }
 
     var studentId = window.location.href.split('graph-editor/')[1];
+    if (studentId == null) {
+        studentId = window.location.href.split('graph-viewer/')[1];
+    }
     ajax("http://localhost:8080/students/graph/"+studentId)
     .then(function(result) {
       if (result == "") {
@@ -97,7 +100,7 @@ function mainFunc() {
 
         //евент нажатия правой кнопкой по вершине
         graph.bind('rightClickNode', function(e) {
-            console.log(e.data.node.id);
+//            console.log(e.data.node.id);
             if (e.data.node.isSelected) { //если вершина была выделена, то убираем выделение
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
@@ -138,7 +141,7 @@ function mainFunc() {
 
         //евент нажатия кнопкой по одной и той же вершине вершине
         graph.bind('clickNode', function(e) {
-            console.log(e.data.node.id);
+//            console.log(e.data.node.id);
             if (e.data.node.isSelected) { //если вершина была выделена, то добавляем ребро, само на себя
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
@@ -162,7 +165,7 @@ function mainFunc() {
 
         //евент именения названия ребра
         $('#changeEdgeNameButton').click(function() {
-            console.log($('#inputEdge').val());
+//            console.log($('#inputEdge').val());
             if(greenEdgeIds[0] != null) {
                 graph.graph.edges().forEach(function(edge) {
                     if (edge.id == greenEdgeIds[0]) {
@@ -247,7 +250,7 @@ function mainFunc() {
                 });
 
                 let result = await response.json();
-                console.log(result);
+//                console.log(result);
             }
 
 
@@ -283,7 +286,7 @@ function recover(data) {
 
         //евент нажатия правой кнопкой по ребру
         graph.bind('rightClickEdge', function(e) {
-            console.log(e.data.edge.id);
+//            console.log(e.data.edge.id);
             if (e.data.edge.isSelected) {
                 e.data.edge.color = '#ccc';
                 e.data.edge.isSelected = false;
@@ -312,7 +315,7 @@ function recover(data) {
 
         //евент нажатия правой кнопкой по вершине
         graph.bind('rightClickNode', function(e) {
-            console.log(e.data.node.id);
+//            console.log(e.data.node.id);
             if (e.data.node.isSelected) { //если вершина была выделена, то убираем выделение
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
@@ -365,7 +368,7 @@ function recover(data) {
 
         //евент нажатия кнопкой по одной и той же вершине вершине
         graph.bind('clickNode', function(e) {
-            console.log(e.data.node.id);
+//            console.log(e.data.node.id);
             if (e.data.node.isSelected) { //если вершина была выделена, то добавляем ребро, само на себя
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
@@ -389,7 +392,7 @@ function recover(data) {
 
             //евент именения названия ребра
             $('#changeEdgeNameButton').click(function() {
-                console.log($('#inputEdge').val());
+//                console.log($('#inputEdge').val());
                 if(greenEdgeIds[0] != null) {
                     graph.graph.edges().forEach(function(edge) {
                         if (edge.id == greenEdgeIds[0]) {
@@ -479,7 +482,7 @@ function recover(data) {
                 });
 
                 let result = await response.json();
-                console.log(result);
+//                console.log(result);
             }
 
     var dragListener = sigma.plugins.dragNodes(graph, graph.renderers[0]);
@@ -488,13 +491,10 @@ function recover(data) {
 
    //функция заполнения сквозного id для нод
     function fillCommonNodeId() {
-        console.log("зашли в метод");
         if (graph.graph.nodes() != null) {
             var maxValue = 0;
             graph.graph.nodes().forEach(function(node) {
                 if (node.id >= maxValue) {
-                    console.log("node.id: "+ node.id);
-                    console.log("maxValue: "+ maxValue);
                     maxValue = node.id;
                 }
             });

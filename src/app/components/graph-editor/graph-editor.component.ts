@@ -16,7 +16,7 @@ export class GraphEditorComponent implements OnInit {
 
     id: number;
     test: number;
-    validateResponce: string;
+    validateResponse: string;
     student: Student = new Student();
     exercise: Exercise = new Exercise();
 
@@ -38,7 +38,6 @@ export class GraphEditorComponent implements OnInit {
             this.student = data;
             this.exerciseService.getExercise(data.exerciseId)
                           .subscribe(data => {
-                            console.log(data);
                             this.exercise = data;
                             console.log(this.exercise);
                           }, error => console.log(error));
@@ -51,8 +50,7 @@ export class GraphEditorComponent implements OnInit {
 
       validate() {
           this.studentService.validateGraph(this.student).subscribe( data =>{
-             console.log(data);
-             this.validateResponce = data;
+             this.validateResponse = data;
            },
            error => console.log(error));
       }

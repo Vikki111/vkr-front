@@ -33,7 +33,6 @@ export class GraphViewerComponent implements OnInit {
             this.student = data;
             this.exerciseService.getExercise(data.exerciseId)
                 .subscribe(data => {
-                  console.log(data);
                   this.exercise = data;
                 }, error => console.log(error));
           }, error => console.log(error));
@@ -42,7 +41,6 @@ export class GraphViewerComponent implements OnInit {
     updateStudent() {
       this.studentService.updateStudent(this.id, this.student)
         .subscribe(data => {
-          console.log(data);
           this.student = new Student();
           this.gotoList();
         }, error => console.log(error));

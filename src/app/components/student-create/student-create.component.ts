@@ -31,11 +31,8 @@ export class StudentCreateComponent implements OnInit {
 
    saveStudent(){
      this.studentService.createStudent(this.student).subscribe( data =>{
-       console.log("new student:"+data.id);
-
        this.authService.registerWithStudent(this.username, this.password, data.id).subscribe(
              data => {
-               console.log("new user "+data.student);
              },
              err => {
              }
@@ -51,7 +48,6 @@ export class StudentCreateComponent implements OnInit {
    }
 
    onSubmit(){
-     console.log(this.student);
      this.saveStudent();
    }
 }

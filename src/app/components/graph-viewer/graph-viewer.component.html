@@ -76,8 +76,9 @@
 <!--  (1) start = ([ FROM id ] IMPORT| EXPORT)id-list ;-->
 <!--  (2) id-list = id { , id }-->
 <!--  </textarea>-->
-  <input class="form-control" id="input" spellcheck="false"
+  <textarea class="form-control" id="input" spellcheck="false"
             [(ngModel)] = "exercise.exercise" readonly>
+  </textarea>
   <label>Фамилия</label>
   <input type="text" class ="form-control" id = "lastName"
          [(ngModel)] = "student.lastName" name = "lastName" readonly>
