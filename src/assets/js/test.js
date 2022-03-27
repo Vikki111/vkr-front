@@ -440,6 +440,12 @@ function recover(data) {
         //удаление вершин
         $('html').keyup(function(e) {
             if (e.keyCode == 46) { //если нажата клавиша delete
+                if (redNodeIds[0] != null && greenEdgeIds[0] != null) {
+                    changeNodeColor(redNodeIds[0]);
+                    changeEdgeColor(greenEdgeIds[0]);
+                    redNodeIds[0] = null;
+                    greenEdgeIds[0] = null;
+                }
                 if (redNodeIds[0] != null) {
                     graph.graph.dropNode(redNodeIds[0]);
                     redNodeIds[0] = null;
@@ -495,6 +501,26 @@ function recover(data) {
         }
         return maxValue;
     }
+
+        //функция проверки наличия вершины по id
+        function changeNodeColor(id) {
+            graph.graph.nodes().forEach(function(node) {
+                if (node.id == id) {
+                    node.color = "#000";
+                    node.isSelected = false;
+                }
+            });
+        }
+
+        //функция проверки наличия ребра по id
+        function changeEdgeColor(id) {
+            graph.graph.edges().forEach(function(edge) {
+                if (edge.id == id) {
+                    edge.color = "#ccc";
+                    edge.isSelected = false;
+                }
+            });
+        }
 
     //функция проверки наличия вершины по id
     function existsNode(id) {
