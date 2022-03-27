@@ -1,32 +1,32 @@
 <div class="container">
-  <h3> Create Student </h3>
+  <h3>Создание студента</h3>
   <form (ngSubmit) = "onSubmit()">
 
     <div class="form-group">
-      <label> Last Name</label>
+      <label>Фамилия</label>
       <input type="text" class ="form-control" id = "lastName"
              [(ngModel)] = "student.lastName" name = "lastName">
     </div>
 
     <div class="form-group">
-      <label> Fist Name </label>
+      <label>Имя</label>
       <input type="text" class ="form-control" id = "firstName"
              [(ngModel)] = "student.firstName" name = "firstName">
     </div>
 
     <div class="form-group">
-      <label> Patronymic </label>
+      <label>Отчество</label>
       <input type="text" class ="form-control" id = "patronymic"
              [(ngModel)] = "student.patronymic" name = "patronymic">
     </div>
 
     <div class="form-group">
-      <label> Department </label>
+      <label>Группа</label>
       <input type="text" class ="form-control" id = "department"
              [(ngModel)] = "student.department" name = "department">
     </div>
 
-    <label>Exercise Id</label>
+    <label>ID задания</label>
     <select class="form-select" [(ngModel)]="student.exerciseId" name="exerciseId">
       <option *ngFor="let v of exercises" [value]="v.id">{{v.id}}</option>
     </select>
@@ -34,18 +34,18 @@
     <br>
 
     <div class="form-group">
-      <label>Username </label>
+      <label>Логин</label>
       <input type="text" class ="form-control" id = "username"
              [(ngModel)] = "username" name = "username">
     </div>
     <div class="form-group">
-      <label>Password </label>
+      <label>Пароль</label>
       <input type="text" class ="form-control" id = "password"
              [(ngModel)] = "password" name = "password">
     </div>
 
 
 
-    <button class = "btn btn-success" type ="submit">Submit</button>
+    <button class = "btn btn-success" type ="submit">Сохранить</button>
   </form>
 </div>

@@ -28,7 +28,7 @@
       <th>Задание</th>
       <th>Описание</th>
       <th>Удалить</th>
-      <th>Обновить</th>
+      <th>Изменить</th>
     </tr>
     </thead>
     <tbody>
@@ -37,7 +37,7 @@
       <td>{{exercise.exercise}}</td>
       <td>{{exercise.description}}</td>
       <td><button (click)="deleteExercise(exercise.id)" class = "btn btn-danger">Удалить</button></td>
-      <td><button (click) = "updateExercise(exercise.id)" class = "btn btn-secondary">Обновить</button></td>
+      <td><button (click) = "updateExercise(exercise.id)" class = "btn btn-secondary">Изменить</button></td>
     </tr>
     </tbody>
   </table>
