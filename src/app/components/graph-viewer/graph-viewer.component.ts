@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class GraphViewerComponent implements OnInit {
 
     id: number;
+    validateResponse: string;
     student: Student = new Student();
     exercise: Exercise = new Exercise();
 
@@ -48,6 +49,13 @@ export class GraphViewerComponent implements OnInit {
 
     onSubmit() {
       this.updateStudent();
+    }
+
+    validate() {
+        this.studentService.validateGraph(this.student).subscribe( data =>{
+           this.validateResponse = data;
+         },
+         error => console.log(error));
     }
 
     gotoList() {

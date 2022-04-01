@@ -64,7 +64,7 @@
       <th>Комментарий</th>
       <th>Задание</th>
       <th>Просмотр</th>
-      <th>Обновить</th>
+      <th>Изменить</th>
       <th>Удалить</th>
     </tr>
     </thead>
@@ -80,7 +80,7 @@
       <td>{{student.comment}}</td>
       <td>{{student.exerciseId}}</td>
       <td><button (click)="viewGraph(student.id)" class = "btn btn-secondary">Просмотр</button></td>
-      <td><button (click) = "updateStudent(student.id)" class = "btn btn-secondary">Обновить</button></td>
+      <td><button (click) = "updateStudent(student.id)" class = "btn btn-secondary">Изменить</button></td>
       <td><button (click)="deleteStudent(student.id)" class = "btn btn-danger">Удалить</button></td>
     </tr>
     </tbody>

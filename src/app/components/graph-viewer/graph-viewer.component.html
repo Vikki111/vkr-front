@@ -94,7 +94,9 @@
   <label>Комментарий</label>
   <textarea class="form-control" placeholder="Введите комментарий"
             [(ngModel)] = "student.comment" id="inputComment"></textarea>
-  <input type="button" class = "btn btn-secondary btn-outline-light" id="validate" value="Проверить граф">
+  <label> Валидность графа </label>
+  <input class="form-control" [(ngModel)] = "validateResponse" id="validateResponse" readonly>
+  <input (click) = "validate()" type="button" class = "btn btn-secondary btn-outline-light" id="validate" value="Проверить граф">
   <input (click) = "updateStudent()" type="button"
          class = "btn btn-secondary btn-outline-light" id="save" value="Сохранить изменения">
 </div>
