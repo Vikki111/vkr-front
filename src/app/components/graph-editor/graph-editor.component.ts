@@ -51,8 +51,11 @@ export class GraphEditorComponent implements OnInit {
       validate() {
           this.studentService.validateGraph(this.student).subscribe( data =>{
              this.validateResponse = data;
+             console.log("!val "+ data);
            },
-           error => console.log(error));
+           error => {
+             this.validateResponse = error.error.text;
+           });
       }
 
       onSubmit() {
