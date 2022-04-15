@@ -30,6 +30,7 @@
     <tr>
       <th>ID</th>
       <th>Задание</th>
+      <th>Файл с заданием</th>
       <th>Описание</th>
       <th>Удалить</th>
       <th>Изменить</th>
@@ -39,6 +40,7 @@
     <tr *ngFor="let exercise of exercises | async">
       <td>{{exercise.id}}</td>
       <td>{{exercise.exercise}}</td>
+      <td><a class="list-group-item list-group-item-action" (click)="downloadFile(exercise.fileName)">{{exercise.fileName}}</a></td>
       <td>{{exercise.description}}</td>
       <td><button (click)="deleteExercise(exercise.id)" class = "btn btn-danger">Удалить</button></td>
       <td><button (click) = "updateExercise(exercise.id)" class = "btn btn-secondary">Изменить</button></td>

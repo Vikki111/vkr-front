@@ -4,6 +4,7 @@ import { ExerciseService } from "../../components/exercise/exercise.service";
 import { Exercise } from '../../components/exercise/exercise';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from '../../token-storage.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-exercise',
@@ -50,6 +51,11 @@ export class ExerciseComponent implements OnInit {
         },
         error => console.log(error));
   }
+
+  downloadFile(fileName: string): void {
+      this.exerciseService.download(fileName)
+        .subscribe(blob => saveAs(blob, fileName));
+    }
 
   logout(): void {
        this.tokenStorageService.signOut();

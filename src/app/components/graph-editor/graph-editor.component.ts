@@ -6,6 +6,7 @@ import { ExerciseService } from "../../components/exercise/exercise.service";
 import { Observable } from "rxjs";
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from '../../token-storage.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-graph-editor',
@@ -46,6 +47,7 @@ export class GraphEditorComponent implements OnInit {
 
 
       save() {
+      //в js скрипте
       }
 
       validate() {
@@ -69,4 +71,9 @@ export class GraphEditorComponent implements OnInit {
            this.tokenStorageService.signOut();
            window.location.reload();
          }
+
+     downloadFile(fileName: string): void {
+         this.exerciseService.download(fileName)
+           .subscribe(blob => saveAs(blob, fileName));
+       }
 }

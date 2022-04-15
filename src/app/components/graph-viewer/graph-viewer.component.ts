@@ -5,6 +5,7 @@ import { Exercise } from '../../components/exercise/exercise';
 import { ExerciseService } from "../../components/exercise/exercise.service";
 import { Observable } from "rxjs";
 import { ActivatedRoute, Router } from '@angular/router';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-graph-viewer',
@@ -61,4 +62,9 @@ export class GraphViewerComponent implements OnInit {
     gotoList() {
       this.router.navigate(['students']);
     }
+
+    downloadFile(fileName: string): void {
+       this.exerciseService.download(fileName)
+         .subscribe(blob => saveAs(blob, fileName));
+     }
 }

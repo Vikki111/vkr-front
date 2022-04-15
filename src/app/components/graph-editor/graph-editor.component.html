@@ -73,8 +73,9 @@
 <!--  (1) start = ([ FROM id ] IMPORT| EXPORT)id-list ;-->
 <!--  (2) id-list = id { , id }-->
 <!--  </textarea>-->
-  <textarea class="form-control" id="input" [(ngModel)] = "exercise.exercise"  spellcheck="false" readonly>
-  </textarea>
+  <a class="list-group-item list-group-item-action" (click)="downloadFile(exercise.fileName)">{{exercise.fileName}}</a>
+<!--  <textarea class="form-control" id="input" [(ngModel)] = "exercise.exercise"  spellcheck="false" readonly>-->
+<!--  </textarea>-->
 <!--  <input class="form-control" id="input" spellcheck="false"-->
 <!--         [(ngModel)] = "exercise.exercise" readonly>-->
   <label>Фамилия</label>
