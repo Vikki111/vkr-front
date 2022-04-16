@@ -38,7 +38,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let exercise of exercises | async">
-      <td>{{exercise.id}}</td>
+      <td>{{exercise.number}}</td>
       <td>{{exercise.exercise}}</td>
       <td><a class="list-group-item list-group-item-action" (click)="downloadFile(exercise.fileName)">{{exercise.fileName}}</a></td>
       <td>{{exercise.description}}</td>

@@ -36,11 +36,11 @@ export class StudentComponent implements OnInit {
     this.students = this.studentService.getStudentsList();
   }
 
-  viewGraph(id: number){
+  viewGraph(id: string){
         this.router.navigate(['graph-viewer', id]);
   }
 
-  updateStudent(id: number){
+  updateStudent(id: string){
       this.router.navigate(['students', id]);
   }
 
@@ -48,7 +48,7 @@ export class StudentComponent implements OnInit {
         this.router.navigate(['student-create']);
   }
 
-  deleteStudent(id: number) {
+  deleteStudent(id: string) {
     this.studentService.deleteStudent(id)
     .subscribe(
         data => {

@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ExerciseUpdateComponent implements OnInit {
 
-id: number;
+   id: string;
    exercise: Exercise = new Exercise();
 
    constructor(private exerciseService: ExerciseService,

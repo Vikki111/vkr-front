@@ -14,7 +14,7 @@ import { saveAs } from 'file-saver';
 })
 export class GraphViewerComponent implements OnInit {
 
-    id: number;
+    id: string;
     validateResponse: string;
     student: Student = new Student();
     exercise: Exercise = new Exercise();

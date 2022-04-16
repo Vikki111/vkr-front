@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
         } else {
            this.editGraph(data.student);
         }
-
 //         this.reloadPage();
       },
       err => {
@@ -62,7 +61,7 @@ export class LoginComponent implements OnInit {
      this.router.navigate(['students']);
   }
 
-  editGraph(id: number){
+  editGraph(id: string){
      this.router.navigate(['graph-editor', id]);
   }
 }

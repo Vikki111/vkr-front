@@ -66,7 +66,7 @@
 <div id="text-container">
   <label>Номер задания</label>
   <input type="text" class ="form-control" id = "exercise"
-         [(ngModel)] = "student.exerciseId" name = "exercise" readonly>
+         [(ngModel)] = "student.exerciseNumber" name = "exercise" readonly>
   <label>Задание</label>
 <!--  <textarea class="form-control" id="input" spellcheck="false"-->
 <!--            readonly>-->
@@ -97,6 +97,7 @@
   <input type="button" class = "btn btn-secondary btn-outline-light" id="changeEdgeNameButton" value="Изменить название ребра">
   <label> Валидность графа </label>
   <input class="form-control" [(ngModel)] = "validateResponse" id="validateResponse" readonly>
+  <br>
   <input (click) = "validate()" type="button" class = "btn btn-secondary btn-outline-light" id="validate" value="Проверить граф">
   <input (click) = "save()" type="button" class = "btn btn-secondary btn-outline-light" id="save" value="Сохранить изменения">
 </div>

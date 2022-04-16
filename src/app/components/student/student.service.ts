@@ -13,7 +13,7 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  getStudent(id: number): Observable<Student> {
+  getStudent(id: string): Observable<Student> {
     return this.http.get<Student>(`${this.baseUrl}/${id}`, {});
   }
 
@@ -29,11 +29,11 @@ export class StudentService {
     return this.http.post<string>(`${this.baseUrl}/validate`, student);
   }
 
-  updateStudent(id: number, student: Student): Observable<Student> {
+  updateStudent(id: string, student: Student): Observable<Student> {
     return this.http.put<Student>(`${this.baseUrl}/${id}`, student, {});
   }
 
-  deleteStudent(id: number): Observable<any> {
+  deleteStudent(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, {});
   }
 

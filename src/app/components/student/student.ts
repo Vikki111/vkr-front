@@ -1,5 +1,5 @@
 export class Student {
-  id: number;
+  id: string;
   lastName: string;
   firstName: string;
   patronymic: string;
@@ -8,6 +8,7 @@ export class Student {
   graph: string;
   ready: boolean;
   comment: string;
-  exerciseId: number;
+  exerciseId: string;
+  exerciseNumber: number;
 }
 

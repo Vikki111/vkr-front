@@ -34,7 +34,7 @@ export class UserComponent implements OnInit {
     this.users = this.userService.getUsersList();
   }
 
-  deleteUser(id: number) {
+  deleteUser(id: string) {
     this.userService.deleteUser(id)
     .subscribe(
         data => {

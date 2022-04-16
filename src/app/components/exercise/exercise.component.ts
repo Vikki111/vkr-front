@@ -35,7 +35,7 @@ export class ExerciseComponent implements OnInit {
     this.exercises = this.exerciseService.getExercisesList();
   }
 
-  updateExercise(id: number){
+  updateExercise(id: string){
       this.router.navigate(['exercises', id]);
   }
 
@@ -43,7 +43,7 @@ export class ExerciseComponent implements OnInit {
         this.router.navigate(['exercise-create']);
   }
 
-  deleteExercise(id: number) {
+  deleteExercise(id: string) {
     this.exerciseService.deleteExercise(id)
     .subscribe(
         data => {

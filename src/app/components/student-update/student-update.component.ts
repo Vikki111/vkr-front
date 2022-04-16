@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class StudentUpdateComponent implements OnInit {
 
-    id: number;
+    id: string;
     student: Student = new Student();
     exercises: Exercise[] = [];
 
