@@ -10,7 +10,11 @@ let greenEdgeIds = {};
 
 let redNodeIds = {};
 
+let endNodeIds = {};
+
 let selectedEdgeId;
+//console.log($('#inputEdge').val());
+
 
 //создание редактора
 $(document).ready(function() {
@@ -201,6 +205,19 @@ function mainFunc() {
             y = p.y;
 
         commonNodeId = fillCommonNodeId() + 1;
+
+        if (commonNodeId == 1) {
+            graph.graph.addNode({
+                id: commonNodeId,
+                size: 75,
+                label: commonNodeId + "",
+                    x: x + Math.random() / 10,
+                    y: y + Math.random() / 10,
+                    dX: 0,
+                    dY: 0,
+                });
+                graph.refresh();
+        }
         graph.graph.addNode({
             id: commonNodeId,
             size: 50,
@@ -222,6 +239,31 @@ function mainFunc() {
                 }
                 if (greenEdgeIds[0] != null) {
                     graph.graph.dropEdge(greenEdgeIds[0]);
+                    greenEdgeIds[0] = null;
+                }
+                graph.refresh();
+            }
+            if (e.keyCode == 13) { //если нажата клавиша enter
+                if (redNodeIds[0] != null && endNodeIds[0] == null) {
+                    graph.graph.nodes().forEach(function(node) {
+                        if (node.id == redNodeIds[0]) {
+                            endNodeIds[0] = node.id;
+                            node.size = 75;
+                            node.color = "#000";
+                        }
+                    });
+                    redNodeIds[0] = null;
+                }
+                if (redNodeIds[0] != null && endNodeIds[0] != null && redNodeIds[0]==endNodeIds[0]) {
+                    graph.graph.nodes().forEach(function(node) {
+                        if (node.id == redNodeIds[0]) {
+                            node.size = 50;
+                            endNodeIds[0] = null;
+                        }
+                    });
+                    redNodeIds[0] = null;
+                }
+                if (greenEdgeIds[0] != null) {
                     greenEdgeIds[0] = null;
                 }
                 graph.refresh();
@@ -412,7 +454,7 @@ function recover(data) {
 
         //добавление новой вершины
         dom.addEventListener('dblclick', function(e) {
-
+        console.log('!!!!');
             var x,
                 y,
                 p,
@@ -428,6 +470,17 @@ function recover(data) {
             y = p.y;
 
             commonNodeId = fillCommonNodeId() + 1;
+            if (commonNodeId == 1) {
+                graph.graph.addNode({
+                    id: commonNodeId,
+                    size: 70,
+                    label: commonNodeId + "",
+                    x: x + Math.random() / 10,
+                    y: y + Math.random() / 10,
+                    dX: 0,
+                    dY: 0,
+                });
+            }
             graph.graph.addNode({
                 id: commonNodeId,
                 size: 50,
