@@ -27,7 +27,6 @@
     <thead>
     <tr>
       <th>Логин</th>
-      <th>Пароль</th>
       <th>Фамилия</th>
       <th>Имя</th>
       <th>Группа</th>
@@ -37,7 +36,6 @@
     <tbody>
     <tr *ngFor="let user of users | async">
       <td>{{user.username}}</td>
-      <td>{{user.password}}</td>
       <td>{{user.lastName}}</td>
       <td>{{user.firstName}}</td>
       <td>{{user.department}}</td>

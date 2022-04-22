@@ -295,6 +295,19 @@ function mainFunc() {
 //                console.log(result);
             }
 
+            $('#validate').click(function() {
+                          ajax("http://localhost:8080/graph/validate/"+ studentId)
+                            .then(function(result) {
+                              if (result == "") {
+                                  console.log("test");
+                              } else {
+                                  console.log("test2");
+                              }
+                            })
+                              .catch(function() {
+                            });
+                        });
+
 
         var dragListener = sigma.plugins.dragNodes(graph, graph.renderers[0]);
 
@@ -514,7 +527,7 @@ function recover(data) {
             }
         });
 
-        //распечатка джейсона графа
+        //сохранение графа для студента
             $('#save').click(function() {
         //    console.log(JSON.stringify({nodes: graph.graph.nodes(), edges: graph.graph.edges()}));
                 savejson();
@@ -537,6 +550,19 @@ function recover(data) {
                 let result = await response.json();
 //                console.log(result);
             }
+
+            $('#validate').click(function() {
+              ajax("http://localhost:8080/graph/validate/"+ studentId)
+                .then(function(result) {
+                  if (result == "") {
+                      console.log("test");
+                  } else {
+                      console.log(result);
+                  }
+                })
+                  .catch(function() {
+                });
+            });
 
     var dragListener = sigma.plugins.dragNodes(graph, graph.renderers[0]);
 
