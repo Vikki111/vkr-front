@@ -26,7 +26,7 @@
              [(ngModel)] = "student.department" name = "department">
     </div>
 
-    <label>ID задания</label>
+    <label>Номер задания</label>
     <select class="form-select" [(ngModel)]="student.exerciseId" name="exerciseId">
       <option *ngFor="let v of exercises" [value]="v.id">{{v.number}}</option>
     </select>

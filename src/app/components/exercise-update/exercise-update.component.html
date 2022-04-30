@@ -3,7 +3,7 @@
   <form (ngSubmit) = "onSubmit()">
 
     <div class="form-group">
-      <label>ID задания</label>
+      <label>Номер задания</label>
       <input type="text" class ="form-control" id = "exerciseNumber"
              [(ngModel)] = "exercise.number" name = "exerciseNumber">
     </div>
@@ -12,6 +12,15 @@
       <label>Задание</label>
       <input type="text" class ="form-control" id = "exercise"
              [(ngModel)] = "exercise.exercise" name = "exercise">
+    </div>
+
+    <div class="form-group">
+    <label>Файл с заданием</label>
+    <br>
+    <input type="file"
+           id="file"
+           [(ngModel)]="fileToUpload"
+           (change)="handleFileInput($any($event).target.files)">
     </div>
 
     <div class="form-group">

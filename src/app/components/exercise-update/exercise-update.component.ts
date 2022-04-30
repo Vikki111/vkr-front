@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ExerciseUpdateComponent implements OnInit {
 
+   fileToUpload: File | null = null;
    id: string;
    exercise: Exercise = new Exercise();
 
@@ -19,6 +20,8 @@ export class ExerciseUpdateComponent implements OnInit {
 
    ngOnInit() {
      this.exercise = new Exercise();
+//     this.downloadFile("3.pdf");
+
 
      this.id = this.route.snapshot.params['id'];
 
@@ -33,8 +36,25 @@ export class ExerciseUpdateComponent implements OnInit {
        .subscribe(data => {
          this.exercise = new Exercise();
          this.gotoList();
+         this.exerciseService.postFile(this.fileToUpload, this.id).subscribe(data => {
+              this.gotoList();
+                 }, error => {
+                   console.log(error);
+                 });
        }, error => console.log(error));
    }
+
+   handleFileInput(files: FileList) {
+       this.fileToUpload = files.item(0);
+   }
+
+//    downloadFile(fileName: string): void {
+//        this.exerciseService.download(fileName)
+//          .subscribe(blob => {
+//           this.fileToUpload = new File([blob], "3.pdf");
+//         });
+//         console.log("!!!! ",this.fileToUpload);
+//     }
 
    onSubmit() {
      this.updateExercise();

@@ -63,6 +63,7 @@
           white-space: pre-wrap;
         }
     </style>
+<h3>Редактор графа</h3>
 <div id="text-container">
   <label>Номер задания</label>
   <input type="text" class ="form-control" id = "exercise"
@@ -92,10 +93,10 @@
          [(ngModel)] = "student.mark" name = "mark" readonly>
   <label>Комментарий</label>
   <input class="form-control" [(ngModel)] = "student.comment" id="inputComment" readonly>
-  <label> Название ребра </label>
+  <label>Название ребра</label>
   <textarea class ="form-control" placeholder="Название выбранного ребра" id="inputEdge"></textarea>
   <input type="button" class = "btn btn-secondary btn-outline-light" id="changeEdgeNameButton" value="Изменить название ребра">
-  <label> Валидность графа </label>
+  <label>Правильность построенного графа</label>
   <input class="form-control" [(ngModel)] = "validateResponse" id="validateResponse" readonly>
   <br>
   <input (click) = "validate()" type="button" class = "btn btn-secondary btn-outline-light" id="validate" value="Проверить граф">
