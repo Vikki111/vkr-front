@@ -1,18 +1,16 @@
 let graph;
 
-let atlasTimeout;
+//let atlasTimeout;
 
-let edgeLabels = {};
+//let edgeLabels = {};
 
-let greenNodeIds = {};
+let selectedEdgeIds = {};
 
-let greenEdgeIds = {};
-
-let redNodeIds = {};
+let selectedNodeIds = {};
 
 let endNodeIds = {};
 
-let selectedEdgeId;
+//let selectedEdgeId;
 //console.log($('#inputEdge').val());
 
 
@@ -79,15 +77,15 @@ function mainFunc() {
             if (e.data.edge.isSelected) {
                 e.data.edge.color = '#ccc';
                 e.data.edge.isSelected = false;
-                if (greenEdgeIds[0] == e.data.edge.id) {
-                    greenEdgeIds[0] = null;
+                if (selectedEdgeIds[0] == e.data.edge.id) {
+                    selectedEdgeIds[0] = null;
                     $('#inputEdge').val('');
                 }
             } else {
-                e.data.edge.color = "#0A0"; //зеленый
+                e.data.edge.color = "#0000FF"; //зеленый
                 e.data.edge.isSelected = true;
-                if (greenEdgeIds[0] == null) {
-                    greenEdgeIds[0] = e.data.edge.id;
+                if (selectedEdgeIds[0] == null) {
+                    selectedEdgeIds[0] = e.data.edge.id;
                 } else {
                     graph.graph.edges().forEach(function(edge) {
                         if (edge.id != e.data.edge.id) {
@@ -95,7 +93,7 @@ function mainFunc() {
                             edge.isSelected = false;
                         }
                     });
-                    greenEdgeIds[0] = e.data.edge.id;
+                    selectedEdgeIds[0] = e.data.edge.id;
                 }
                 $('#inputEdge').val(e.data.edge.label);
             }
@@ -108,19 +106,19 @@ function mainFunc() {
             if (e.data.node.isSelected) { //если вершина была выделена, то убираем выделение
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
-                if (redNodeIds[0] == e.data.node.id) {
-                    redNodeIds[0] = null;
+                if (selectedNodeIds[0] == e.data.node.id) {
+                    selectedNodeIds[0] = null;
                 }
             } else { //если была не выделена - выделяем
                 e.data.node.color = "#f00"; //красный
                 e.data.node.isSelected = true;
-                if (redNodeIds[0] == null) {
-                    redNodeIds[0] = e.data.node.id;
+                if (selectedNodeIds[0] == null) {
+                    selectedNodeIds[0] = e.data.node.id;
                 } else {
-                    if(existsEdge(redNodeIds[0] + "-" + e.data.node.id) == false) { //если не было такого ребра, то добавляем
+                    if(existsEdge(selectedNodeIds[0] + "-" + e.data.node.id) == false) { //если не было такого ребра, то добавляем
                         graph.graph.addEdge({ //добавление связей
-                            id: redNodeIds[0] + "-" + e.data.node.id,
-                            source: redNodeIds[0],
+                            id: selectedNodeIds[0] + "-" + e.data.node.id,
+                            source: selectedNodeIds[0],
                             size: 12,
                             target: e.data.node.id,
                             color: '#ccc',
@@ -128,16 +126,16 @@ function mainFunc() {
                             type: "arrow"
                         });
                     }
-                    if(existsEdge(e.data.node.id + "-" + redNodeIds[0])) { //если было обратное ребро, то удаляем его
-                        graph.graph.dropEdge(e.data.node.id + "-" + redNodeIds[0]);
+                    if(existsEdge(e.data.node.id + "-" + selectedNodeIds[0])) { //если было обратное ребро, то удаляем его
+                        graph.graph.dropEdge(e.data.node.id + "-" + selectedNodeIds[0]);
                     }
                     graph.graph.nodes().forEach(function(node) {
-                        if (node.id == e.data.node.id || node.id == redNodeIds[0]) { //убираем выделение вершины
+                        if (node.id == e.data.node.id || node.id == selectedNodeIds[0]) { //убираем выделение вершины
                             node.color = '#000';
                             node.isSelected = false;
                         }
                     });
-                    redNodeIds[0] = null;
+                    selectedNodeIds[0] = null;
                 }
             }
             graph.refresh();
@@ -149,11 +147,11 @@ function mainFunc() {
             if (e.data.node.isSelected) { //если вершина была выделена, то добавляем ребро, само на себя
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
-                if (redNodeIds[0] == e.data.node.id) {
-                   if(existsEdge(redNodeIds[0] + "-" + e.data.node.id) == false) { //если не было такого ребра, то добавляем
+                if (selectedNodeIds[0] == e.data.node.id) {
+                   if(existsEdge(selectedNodeIds[0] + "-" + e.data.node.id) == false) { //если не было такого ребра, то добавляем
                        graph.graph.addEdge({ //добавление связей
-                           id: redNodeIds[0] + "-" + e.data.node.id,
-                           source: redNodeIds[0],
+                           id: selectedNodeIds[0] + "-" + e.data.node.id,
+                           source: selectedNodeIds[0],
                            size: 12,
                            target: e.data.node.id,
                            color: '#ccc',
@@ -161,7 +159,7 @@ function mainFunc() {
                            type: 'curve'
                        });
                      }
-                     redNodeIds[0] = null;
+                     selectedNodeIds[0] = null;
                 }
             }
             graph.refresh();
@@ -170,9 +168,9 @@ function mainFunc() {
         //евент именения названия ребра
         $('#changeEdgeNameButton').click(function() {
 //            console.log($('#inputEdge').val());
-            if(greenEdgeIds[0] != null) {
+            if(selectedEdgeIds[0] != null) {
                 graph.graph.edges().forEach(function(edge) {
-                    if (edge.id == greenEdgeIds[0]) {
+                    if (edge.id == selectedEdgeIds[0]) {
                         edge.label = $('#inputEdge').val();
                     }
                 });
@@ -233,38 +231,38 @@ function mainFunc() {
         //удаление вершин
         $('html').keyup(function(e) {
             if (e.keyCode == 46) { //если нажата клавиша delete
-                if (redNodeIds[0] != null) {
-                    graph.graph.dropNode(redNodeIds[0]);
-                    redNodeIds[0] = null;
+                if (selectedNodeIds[0] != null) {
+                    graph.graph.dropNode(selectedNodeIds[0]);
+                    selectedNodeIds[0] = null;
                 }
-                if (greenEdgeIds[0] != null) {
-                    graph.graph.dropEdge(greenEdgeIds[0]);
-                    greenEdgeIds[0] = null;
+                if (selectedEdgeIds[0] != null) {
+                    graph.graph.dropEdge(selectedEdgeIds[0]);
+                    selectedEdgeIds[0] = null;
                 }
                 graph.refresh();
             }
             if (e.keyCode == 13) { //если нажата клавиша enter
-                if (redNodeIds[0] != null && endNodeIds[0] == null) {
+                if (selectedNodeIds[0] != null && endNodeIds[0] == null) {
                     graph.graph.nodes().forEach(function(node) {
-                        if (node.id == redNodeIds[0]) {
+                        if (node.id == selectedNodeIds[0]) {
                             endNodeIds[0] = node.id;
                             node.size = 75;
                             node.color = "#000";
                         }
                     });
-                    redNodeIds[0] = null;
+                    selectedNodeIds[0] = null;
                 }
-                if (redNodeIds[0] != null && endNodeIds[0] != null && redNodeIds[0]==endNodeIds[0]) {
+                if (selectedNodeIds[0] != null && endNodeIds[0] != null && selectedNodeIds[0]==endNodeIds[0]) {
                     graph.graph.nodes().forEach(function(node) {
-                        if (node.id == redNodeIds[0]) {
+                        if (node.id == selectedNodeIds[0]) {
                             node.size = 50;
                             endNodeIds[0] = null;
                         }
                     });
-                    redNodeIds[0] = null;
+                    selectedNodeIds[0] = null;
                 }
-                if (greenEdgeIds[0] != null) {
-                    greenEdgeIds[0] = null;
+                if (selectedEdgeIds[0] != null) {
+                    selectedEdgeIds[0] = null;
                 }
                 graph.refresh();
             }
@@ -296,17 +294,18 @@ function mainFunc() {
             }
 
             $('#validate').click(function() {
-                          ajax("http://localhost:8080/graph/validate/"+ studentId)
-                            .then(function(result) {
-                              if (result == "") {
-                                  console.log("test");
-                              } else {
-                                  console.log("test2");
-                              }
-                            })
-                              .catch(function() {
-                            });
-                        });
+                ajax("http://localhost:8080/graph/validate/"+ studentId)
+                    .then(function(result) {
+                        if (result == "") {
+                            console.log("error");
+                        } else {
+                            changeNodesColorByIds(result);
+                            console.log(result);
+                        }
+                    }).catch(function() {
+
+                    });
+              });
 
 
         var dragListener = sigma.plugins.dragNodes(graph, graph.renderers[0]);
@@ -345,15 +344,15 @@ function recover(data) {
             if (e.data.edge.isSelected) {
                 e.data.edge.color = '#ccc';
                 e.data.edge.isSelected = false;
-                if (greenEdgeIds[0] == e.data.edge.id) {
-                    greenEdgeIds[0] = null;
+                if (selectedEdgeIds[0] == e.data.edge.id) {
+                    selectedEdgeIds[0] = null;
                     $('#inputEdge').val('');
                 }
             } else {
-                e.data.edge.color = "#0A0"; //зеленый
+                e.data.edge.color = "#0000FF"; //зеленый
                 e.data.edge.isSelected = true;
-                if (greenEdgeIds[0] == null) {
-                    greenEdgeIds[0] = e.data.edge.id;
+                if (selectedEdgeIds[0] == null) {
+                    selectedEdgeIds[0] = e.data.edge.id;
                 } else {
                     graph.graph.edges().forEach(function(edge) {
                         if (edge.id != e.data.edge.id) {
@@ -361,7 +360,7 @@ function recover(data) {
                             edge.isSelected = false;
                         }
                     });
-                    greenEdgeIds[0] = e.data.edge.id;
+                    selectedEdgeIds[0] = e.data.edge.id;
                 }
                 $('#inputEdge').val(e.data.edge.label);
             }
@@ -374,20 +373,20 @@ function recover(data) {
             if (e.data.node.isSelected) { //если вершина была выделена, то убираем выделение
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
-                if (redNodeIds[0] == e.data.node.id) {
-                    redNodeIds[0] = null;
+                if (selectedNodeIds[0] == e.data.node.id) {
+                    selectedNodeIds[0] = null;
                 }
             } else { //если была не выделена - выделяем
                 e.data.node.color = "#f00"; //красный
                 e.data.node.isSelected = true;
-                if (redNodeIds[0] == null) {
-                    redNodeIds[0] = e.data.node.id;
+                if (selectedNodeIds[0] == null) {
+                    selectedNodeIds[0] = e.data.node.id;
                 } else {
-                    if(existsEdge(redNodeIds[0] + "-" + e.data.node.id) == false) { //если не было такого ребра, то добавляем
-                        if(existsEdge(e.data.node.id + "-" + redNodeIds[0])) {
+                    if(existsEdge(selectedNodeIds[0] + "-" + e.data.node.id) == false) { //если не было такого ребра, то добавляем
+                        if(existsEdge(e.data.node.id + "-" + selectedNodeIds[0])) {
                             graph.graph.addEdge({ //добавление связей
-                                id: redNodeIds[0] + "-" + e.data.node.id,
-                                source: redNodeIds[0],
+                                id: selectedNodeIds[0] + "-" + e.data.node.id,
+                                source: selectedNodeIds[0],
                                 size: 12,
                                 target: e.data.node.id,
                                 color: '#ccc',
@@ -396,8 +395,8 @@ function recover(data) {
                             });
                         } else {
                             graph.graph.addEdge({ //добавление связей
-                                id: redNodeIds[0] + "-" + e.data.node.id,
-                                source: redNodeIds[0],
+                                id: selectedNodeIds[0] + "-" + e.data.node.id,
+                                source: selectedNodeIds[0],
                                 size: 12,
                                 target: e.data.node.id,
                                 color: '#ccc',
@@ -406,16 +405,16 @@ function recover(data) {
                             });
                         }
                     }
-//                    if(existsEdge(e.data.node.id + "-" + redNodeIds[0])) { //если было обратное ребро, то удаляем его
-//                        graph.graph.dropEdge(e.data.node.id + "-" + redNodeIds[0]);
+//                    if(existsEdge(e.data.node.id + "-" + selectedNodeIds[0])) { //если было обратное ребро, то удаляем его
+//                        graph.graph.dropEdge(e.data.node.id + "-" + selectedNodeIds[0]);
 //                    }
                     graph.graph.nodes().forEach(function(node) {
-                        if (node.id == e.data.node.id || node.id == redNodeIds[0]) { //убираем выделение вершины
+                        if (node.id == e.data.node.id || node.id == selectedNodeIds[0]) { //убираем выделение вершины
                             node.color = '#000';
                             node.isSelected = false;
                         }
                     });
-                    redNodeIds[0] = null;
+                    selectedNodeIds[0] = null;
                 }
             }
             graph.refresh();
@@ -427,11 +426,11 @@ function recover(data) {
             if (e.data.node.isSelected) { //если вершина была выделена, то добавляем ребро, само на себя
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
-                if (redNodeIds[0] == e.data.node.id) {
-                   if(existsEdge(redNodeIds[0] + "-" + e.data.node.id) == false) { //если не было такого ребра, то добавляем
+                if (selectedNodeIds[0] == e.data.node.id) {
+                   if(existsEdge(selectedNodeIds[0] + "-" + e.data.node.id) == false) { //если не было такого ребра, то добавляем
                        graph.graph.addEdge({ //добавление связей
-                           id: redNodeIds[0] + "-" + e.data.node.id,
-                           source: redNodeIds[0],
+                           id: selectedNodeIds[0] + "-" + e.data.node.id,
+                           source: selectedNodeIds[0],
                            size: 12,
                            target: e.data.node.id,
                            color: '#ccc',
@@ -439,7 +438,7 @@ function recover(data) {
                            type: 'curvedArrow'
                        });
                      }
-                     redNodeIds[0] = null;
+                     selectedNodeIds[0] = null;
                 }
             }
             graph.refresh();
@@ -448,9 +447,9 @@ function recover(data) {
             //евент именения названия ребра
             $('#changeEdgeNameButton').click(function() {
 //                console.log($('#inputEdge').val());
-                if(greenEdgeIds[0] != null) {
+                if(selectedEdgeIds[0] != null) {
                     graph.graph.edges().forEach(function(edge) {
-                        if (edge.id == greenEdgeIds[0]) {
+                        if (edge.id == selectedEdgeIds[0]) {
                             edge.label = $('#inputEdge').val();
                         }
                     });
@@ -467,7 +466,6 @@ function recover(data) {
 
         //добавление новой вершины
         dom.addEventListener('dblclick', function(e) {
-        console.log('!!!!');
             var x,
                 y,
                 p,
@@ -509,19 +507,19 @@ function recover(data) {
         //удаление вершин
         $('html').keyup(function(e) {
             if (e.keyCode == 46) { //если нажата клавиша delete
-                if (redNodeIds[0] != null && greenEdgeIds[0] != null) {
-                    changeNodeColor(redNodeIds[0]);
-                    changeEdgeColor(greenEdgeIds[0]);
-                    redNodeIds[0] = null;
-                    greenEdgeIds[0] = null;
+                if (selectedNodeIds[0] != null && selectedEdgeIds[0] != null) {
+                    changeNodeColor(selectedNodeIds[0]);
+                    changeEdgeColor(selectedEdgeIds[0]);
+                    selectedNodeIds[0] = null;
+                    selectedEdgeIds[0] = null;
                 }
-                if (redNodeIds[0] != null) {
-                    graph.graph.dropNode(redNodeIds[0]);
-                    redNodeIds[0] = null;
+                if (selectedNodeIds[0] != null) {
+                    graph.graph.dropNode(selectedNodeIds[0]);
+                    selectedNodeIds[0] = null;
                 }
-                if (greenEdgeIds[0] != null) {
-                    graph.graph.dropEdge(greenEdgeIds[0]);
-                    greenEdgeIds[0] = null;
+                if (selectedEdgeIds[0] != null) {
+                    graph.graph.dropEdge(selectedEdgeIds[0]);
+                    selectedEdgeIds[0] = null;
                 }
                 graph.refresh();
             }
@@ -555,8 +553,9 @@ function recover(data) {
               ajax("http://localhost:8080/graph/validate/"+ studentId)
                 .then(function(result) {
                   if (result == "") {
-                      console.log("test");
+                      console.log("error");
                   } else {
+                      changeNodesColorByIds(result);
                       console.log(result);
                   }
                 })
@@ -567,6 +566,17 @@ function recover(data) {
     var dragListener = sigma.plugins.dragNodes(graph, graph.renderers[0]);
 
 }
+
+    function changeNodesColorByIds(stringToSplit) {
+        var array = stringToSplit.split(",");
+        array.forEach(function(id) {
+            graph.graph.nodes().forEach(function(node) {
+                if (node.label == id) {
+                    node.color = "#32CD32";
+                }
+            });
+        });
+    }
 
    //функция заполнения сквозного id для нод
     function fillCommonNodeId() {
@@ -581,7 +591,7 @@ function recover(data) {
         return maxValue;
     }
 
-        //функция проверки наличия вершины по id
+        //функция изменения цвета вершины по id
         function changeNodeColor(id) {
             graph.graph.nodes().forEach(function(node) {
                 if (node.id == id) {
@@ -591,7 +601,7 @@ function recover(data) {
             });
         }
 
-        //функция проверки наличия ребра по id
+        //функция изменения цвета ребра по id
         function changeEdgeColor(id) {
             graph.graph.edges().forEach(function(edge) {
                 if (edge.id == id) {
