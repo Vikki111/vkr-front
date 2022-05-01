@@ -207,7 +207,7 @@ function mainFunc() {
         if (commonNodeId == 1) {
             graph.graph.addNode({
                 id: commonNodeId,
-                size: 75,
+                size: 60,
                 label: commonNodeId + "",
                     x: x + Math.random() / 10,
                     y: y + Math.random() / 10,
@@ -218,7 +218,7 @@ function mainFunc() {
         }
         graph.graph.addNode({
             id: commonNodeId,
-            size: 50,
+            size: 40,
             label: commonNodeId + "",
                 x: x + Math.random() / 10,
                 y: y + Math.random() / 10,
@@ -231,6 +231,12 @@ function mainFunc() {
         //удаление вершин
         $('html').keyup(function(e) {
             if (e.keyCode == 46) { //если нажата клавиша delete
+                if (selectedNodeIds[0] != null && selectedEdgeIds[0] != null) {
+                    changeNodeColor(selectedNodeIds[0]);
+                    changeEdgeColor(selectedEdgeIds[0]);
+                    selectedNodeIds[0] = null;
+                    selectedEdgeIds[0] = null;
+                }
                 if (selectedNodeIds[0] != null) {
                     graph.graph.dropNode(selectedNodeIds[0]);
                     selectedNodeIds[0] = null;
@@ -246,7 +252,7 @@ function mainFunc() {
                     graph.graph.nodes().forEach(function(node) {
                         if (node.id == selectedNodeIds[0]) {
                             endNodeIds[0] = node.id;
-                            node.size = 75;
+                            node.size = 60;
                             node.color = "#000";
                         }
                     });
@@ -255,7 +261,7 @@ function mainFunc() {
                 if (selectedNodeIds[0] != null && endNodeIds[0] != null && selectedNodeIds[0]==endNodeIds[0]) {
                     graph.graph.nodes().forEach(function(node) {
                         if (node.id == selectedNodeIds[0]) {
-                            node.size = 50;
+                            node.size = 40;
                             endNodeIds[0] = null;
                         }
                     });
@@ -334,7 +340,7 @@ function recover(data) {
                 defaultEdgeLabelSize: 18,
                 defaultLabelSize: 20,
                 autoRescale: ['nodeSize', 'edgeSize'],
-                zoomingRatio: 5
+                zoomingRatio: 2
             }
         });
 
@@ -484,7 +490,7 @@ function recover(data) {
             if (commonNodeId == 1) {
                 graph.graph.addNode({
                     id: commonNodeId,
-                    size: 70,
+                    size: 60,
                     label: commonNodeId + "",
                     x: x + Math.random() / 10,
                     y: y + Math.random() / 10,
@@ -494,7 +500,7 @@ function recover(data) {
             }
             graph.graph.addNode({
                 id: commonNodeId,
-                size: 50,
+                size: 40,
                 label: commonNodeId + "",
                 x: x + Math.random() / 10,
                 y: y + Math.random() / 10,
@@ -519,6 +525,31 @@ function recover(data) {
                 }
                 if (selectedEdgeIds[0] != null) {
                     graph.graph.dropEdge(selectedEdgeIds[0]);
+                    selectedEdgeIds[0] = null;
+                }
+                graph.refresh();
+            }
+            if (e.keyCode == 13) { //если нажата клавиша enter
+                if (selectedNodeIds[0] != null && endNodeIds[0] == null) {
+                    graph.graph.nodes().forEach(function(node) {
+                        if (node.id == selectedNodeIds[0]) {
+                            endNodeIds[0] = node.id;
+                            node.size = 60;
+                            node.color = "#000";
+                        }
+                    });
+                    selectedNodeIds[0] = null;
+                }
+                if (selectedNodeIds[0] != null && endNodeIds[0] != null && selectedNodeIds[0]==endNodeIds[0]) {
+                    graph.graph.nodes().forEach(function(node) {
+                        if (node.id == selectedNodeIds[0]) {
+                            node.size = 40;
+                            endNodeIds[0] = null;
+                        }
+                    });
+                    selectedNodeIds[0] = null;
+                }
+                if (selectedEdgeIds[0] != null) {
                     selectedEdgeIds[0] = null;
                 }
                 graph.refresh();
