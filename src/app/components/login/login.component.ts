@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
            this.editGraph(data.student);
         }
 //         this.reloadPage();
-      },
-      err => {
-        this.errorMessage = err.error.message;
+      }, error => {
+      console.log(error);
+        this.errorMessage = "Неправильный логин или пароль";
         this.isLoginFailed = true;
       }
     );

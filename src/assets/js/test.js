@@ -272,6 +272,17 @@ function mainFunc() {
                 }
                 graph.refresh();
             }
+            if (e.keyCode == 8) { //если нажата клавиша backspace
+                graph.graph.nodes().forEach(function(node) {
+                    changeNodeColor(node.id);
+                });
+                graph.graph.edges().forEach(function(edge) {
+                    changeEdgeColor(edge.id);
+                });
+                selectedNodeIds[0] = null;
+                selectedEdgeIds[0] = null;
+                graph.refresh();
+            }
         });
 
         //распечатка джейсона графа
@@ -552,6 +563,17 @@ function recover(data) {
                 if (selectedEdgeIds[0] != null) {
                     selectedEdgeIds[0] = null;
                 }
+                graph.refresh();
+            }
+            if (e.keyCode == 8) { //если нажата клавиша backspace
+                graph.graph.nodes().forEach(function(node) {
+                    changeNodeColor(node.id);
+                });
+                graph.graph.edges().forEach(function(edge) {
+                    changeEdgeColor(edge.id);
+                });
+                selectedNodeIds[0] = null;
+                selectedEdgeIds[0] = null;
                 graph.refresh();
             }
         });
