@@ -272,7 +272,7 @@ function mainFunc() {
                 }
                 graph.refresh();
             }
-            if (e.keyCode == 8) { //если нажата клавиша backspace
+            if (e.keyCode == 9) { //если нажата клавиша tab
                 graph.graph.nodes().forEach(function(node) {
                     changeNodeColor(node.id);
                 });
@@ -565,7 +565,7 @@ function recover(data) {
                 }
                 graph.refresh();
             }
-            if (e.keyCode == 8) { //если нажата клавиша backspace
+            if (e.keyCode == 9) { //если нажата клавиша tab
                 graph.graph.nodes().forEach(function(node) {
                     changeNodeColor(node.id);
                 });
