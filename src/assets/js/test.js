@@ -1,17 +1,14 @@
-let graph;
-
 //let atlasTimeout;
 
 //let edgeLabels = {};
+
+let graph;
 
 let selectedEdgeIds = {};
 
 let selectedNodeIds = {};
 
 let endNodeIds = {};
-
-//let selectedEdgeId;
-//console.log($('#inputEdge').val());
 
 
 //создание редактора
@@ -45,7 +42,7 @@ $(document).ready(function() {
       .catch(function() {
     });
 
-//data3 = {"nodes":[{"size":50,"label":"1","x":54.51593031012319,"y":-203.4484449595114,"dX":0,"dY":0,"id":1,"read_cam0:size":20,"read_cam0:x":0,"read_cam0:y":0,"renderer1:x":445.5,"renderer1:y":479.5,"renderer1:size":20}],"edges":[]};
+
 function mainFunc() {
     graph = new sigma({
         renderer: {
@@ -102,7 +99,6 @@ function mainFunc() {
 
         //евент нажатия правой кнопкой по вершине
         graph.bind('rightClickNode', function(e) {
-//            console.log(e.data.node.id);
             if (e.data.node.isSelected) { //если вершина была выделена, то убираем выделение
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
@@ -143,7 +139,6 @@ function mainFunc() {
 
         //евент нажатия кнопкой по одной и той же вершине вершине
         graph.bind('clickNode', function(e) {
-//            console.log(e.data.node.id);
             if (e.data.node.isSelected) { //если вершина была выделена, то добавляем ребро, само на себя
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
@@ -167,7 +162,6 @@ function mainFunc() {
 
         //евент именения названия ребра
         $('#changeEdgeNameButton').click(function() {
-//            console.log($('#inputEdge').val());
             if(selectedEdgeIds[0] != null) {
                 graph.graph.edges().forEach(function(edge) {
                     if (edge.id == selectedEdgeIds[0]) {
@@ -287,7 +281,6 @@ function mainFunc() {
 
         //распечатка джейсона графа
             $('#save').click(function() {
-        //    console.log(JSON.stringify({nodes: graph.graph.nodes(), edges: graph.graph.edges()}));
                 savejson();
             });
 
@@ -307,7 +300,6 @@ function mainFunc() {
                 });
 
                 let result = await response.json();
-//                console.log(result);
             }
 
             $('#validate').click(function() {
@@ -357,7 +349,6 @@ function recover(data) {
 
         //евент нажатия правой кнопкой по ребру
         graph.bind('rightClickEdge', function(e) {
-//            console.log(e.data.edge.id);
             if (e.data.edge.isSelected) {
                 e.data.edge.color = '#ccc';
                 e.data.edge.isSelected = false;
@@ -386,7 +377,6 @@ function recover(data) {
 
         //евент нажатия правой кнопкой по вершине
         graph.bind('rightClickNode', function(e) {
-//            console.log(e.data.node.id);
             if (e.data.node.isSelected) { //если вершина была выделена, то убираем выделение
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
@@ -422,9 +412,6 @@ function recover(data) {
                             });
                         }
                     }
-//                    if(existsEdge(e.data.node.id + "-" + selectedNodeIds[0])) { //если было обратное ребро, то удаляем его
-//                        graph.graph.dropEdge(e.data.node.id + "-" + selectedNodeIds[0]);
-//                    }
                     graph.graph.nodes().forEach(function(node) {
                         if (node.id == e.data.node.id || node.id == selectedNodeIds[0]) { //убираем выделение вершины
                             node.color = '#000';
@@ -439,7 +426,6 @@ function recover(data) {
 
         //евент нажатия кнопкой по одной и той же вершине вершине
         graph.bind('clickNode', function(e) {
-//            console.log(e.data.node.id);
             if (e.data.node.isSelected) { //если вершина была выделена, то добавляем ребро, само на себя
                 e.data.node.color = "#000";
                 e.data.node.isSelected = false;
@@ -463,7 +449,6 @@ function recover(data) {
 
             //евент именения названия ребра
             $('#changeEdgeNameButton').click(function() {
-//                console.log($('#inputEdge').val());
                 if(selectedEdgeIds[0] != null) {
                     graph.graph.edges().forEach(function(edge) {
                         if (edge.id == selectedEdgeIds[0]) {
@@ -580,7 +565,6 @@ function recover(data) {
 
         //сохранение графа для студента
             $('#save').click(function() {
-        //    console.log(JSON.stringify({nodes: graph.graph.nodes(), edges: graph.graph.edges()}));
                 savejson();
             });
             //POST запрос на бэк, чтобы сохранить json с графом
@@ -599,7 +583,6 @@ function recover(data) {
                 });
 
                 let result = await response.json();
-//                console.log(result);
             }
 
             $('#validate').click(function() {
