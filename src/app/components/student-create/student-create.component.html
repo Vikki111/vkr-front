@@ -1,7 +1,8 @@
 <div class="container">
   <h3>Регистрация нового студента</h3>
-  <form (ngSubmit) = "onSubmit()">
-
+  <form (ngSubmit) = "onSubmit()"
+        #f="ngForm"
+  >
     <div class="form-group">
       <label>Фамилия</label>
       <input type="text" class ="form-control" id = "lastName"
@@ -44,5 +45,14 @@
              [(ngModel)] = "password" name = "password">
     </div>
     <button class = "btn btn-success" type ="submit">Сохранить</button>
+    <div class="form-group">
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && isLoginFailed"
+      >
+        Ошибка входа: {{ errorMessage }}
+      </div>
+    </div>
   </form>
 </div>

@@ -18,6 +18,8 @@ export class StudentCreateComponent implements OnInit {
  username: string;
  password: string;
  exercises: Exercise[] = [];
+ isLoginFailed = false;
+ errorMessage = '';
 
    constructor(private studentService: StudentService,
    private exerciseService: ExerciseService,
@@ -31,14 +33,21 @@ export class StudentCreateComponent implements OnInit {
 
    saveStudent(){
      this.studentService.createStudent(this.student).subscribe( data =>{
+     this.student.id = data.id;
        this.authService.registerWithStudent(this.username, this.password, data.id).subscribe(
              data => {
+             this.goToStudentList();
              },
-             err => {
-             }
+             error => {
+                   this.errorMessage = "Некорректный логин";
+                   this.isLoginFailed = true;
+                   this.studentService.deleteStudent(this.student.id)
+                       .subscribe(
+                           data => {
+                           },
+                           error => console.log(error));
+                 }
            );
-
-       this.goToStudentList();
      },
      error => console.log(error));
    }
