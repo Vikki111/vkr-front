@@ -112,18 +112,27 @@ function mainFunc() {
                     selectedNodeIds[0] = e.data.node.id;
                 } else {
                     if(existsEdge(selectedNodeIds[0] + "-" + e.data.node.id) == false) { //если не было такого ребра, то добавляем
-                        graph.graph.addEdge({ //добавление связей
-                            id: selectedNodeIds[0] + "-" + e.data.node.id,
-                            source: selectedNodeIds[0],
-                            size: 12,
-                            target: e.data.node.id,
-                            color: '#ccc',
-                            hover_color: '#000',
-                            type: "arrow"
-                        });
-                    }
-                    if(existsEdge(e.data.node.id + "-" + selectedNodeIds[0])) { //если было обратное ребро, то удаляем его
-                        graph.graph.dropEdge(e.data.node.id + "-" + selectedNodeIds[0]);
+                        if(existsEdge(e.data.node.id + "-" + selectedNodeIds[0])) {
+                            graph.graph.addEdge({ //добавление связей
+                                id: selectedNodeIds[0] + "-" + e.data.node.id,
+                                source: selectedNodeIds[0],
+                                size: 12,
+                                target: e.data.node.id,
+                                color: '#ccc',
+                                hover_color: '#000',
+                                type: "curvedArrow"
+                            });
+                        } else {
+                            graph.graph.addEdge({ //добавление связей
+                                id: selectedNodeIds[0] + "-" + e.data.node.id,
+                                source: selectedNodeIds[0],
+                                size: 12,
+                                target: e.data.node.id,
+                                color: '#ccc',
+                                hover_color: '#000',
+                                type: "arrow"
+                            });
+                        }
                     }
                     graph.graph.nodes().forEach(function(node) {
                         if (node.id == e.data.node.id || node.id == selectedNodeIds[0]) { //убираем выделение вершины
@@ -603,6 +612,7 @@ function recover(data) {
 
 }
 
+    //изменение цвета вершин из списка
     function changeNodesColorByIds(stringToSplit) {
         var array = stringToSplit.split(",");
         array.forEach(function(id) {
